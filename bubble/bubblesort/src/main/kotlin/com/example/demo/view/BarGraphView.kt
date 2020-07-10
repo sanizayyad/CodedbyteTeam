@@ -1,40 +1,57 @@
 package com.example.demo.view
 
+import com.example.demo.controller.Processor
+import javafx.geometry.Orientation
 import javafx.geometry.Pos
 import javafx.scene.text.FontWeight
 import tornadofx.*
 
-class MyBar(datas: MutableList<Int>) : View(){
-    var highest = datas.max() ?: 0
-    override val root =  hbox {
+class MyBar : View(){
+    val processor: Processor by inject()
+
+    override val root =  stackpane {
+
         setPrefSize(600.0, 400.0)
-        style{
-            backgroundColor += c("#ffffff")
-            alignment = Pos.BOTTOM_CENTER
-            paddingTop = 20.0
-        }
-        spacing = 10.0
-        for (i in datas.indices){
-            vbox {
-                maxHeight = (datas[i].toDouble()/highest) * 400
-                prefWidth = 600.0/datas.size
-                style {
-                    if(i == 5 || i == 6){
-                        backgroundColor += c("#10321e")
-                    }else{
-                        backgroundColor += c("#808080")
-                    }
+        listview(processor.sampleList) {
+            style{
+                backgroundColor += c("#ffffff")
+                alignment = Pos.BOTTOM_CENTER
+                paddingTop = 10.0
+            }
+            isEditable = true
+            orientation = Orientation.HORIZONTAL
+
+            cellFormat{
+
+                prefWidth = 600.0 / processor.sampleList.size
+                style{
                     alignment = Pos.BOTTOM_CENTER
+                    backgroundColor += c("#FFFFFF")
                 }
-                label ("${datas[i]}"){
-                    style{
-                        textFill = c("#FFFFFF")
-                        fontSize = 20.px
-                        fontWeight = FontWeight.EXTRA_BOLD
+                graphic = vbox {
+                    var maxValue = processor.sampleList.maxBy { barItem -> barItem.getValue() }?.getValue()
+                    maxHeight = (it.getValue() / maxValue!!) * 400
+                    style {
+                        alignment = Pos.BOTTOM_CENTER
+                        backgroundProperty().bindBidirectional((item.backgroundProperty))
+                    }
+                    label ("${item.value}"){
+                        style{
+                            textFill = c("#FFFFFF")
+                            fontSize = 20.px
+                            fontWeight = FontWeight.EXTRA_BOLD
+                        }
                     }
                 }
             }
         }
 
+        label ("List is empty!"){
+            style{
+                fontSize = 50.px
+            }
+            visibleWhen { booleanBinding(processor.sampleList) { isEmpty() } }
+        }
     }
+
 }

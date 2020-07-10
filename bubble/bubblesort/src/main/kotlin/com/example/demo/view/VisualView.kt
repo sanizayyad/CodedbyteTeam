@@ -4,7 +4,6 @@ import com.example.demo.app.Styles
 import tornadofx.*
 
 class VisualView : View(){
-    val arr:MutableList<Int> = mutableListOf<Int>(5, 6, 2, 9, 4, 2, 5, 2, 6, 5) //ar
 
     override val root = vbox {
         style{
@@ -17,7 +16,7 @@ class VisualView : View(){
                    addClass(Styles.viewHeaders)
                 }
                 borderpane {
-                    center = MyBar(arr).root
+                    center(MyBar::class)
                 }
             }
             vbox (20.0){
@@ -26,7 +25,7 @@ class VisualView : View(){
                     addClass(Styles.viewHeaders)
                 }
                 borderpane {
-                    center = InfoView().root
+                    center(InfoView::class)
                 }
 
             }
