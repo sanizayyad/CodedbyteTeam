@@ -2,8 +2,9 @@ package com.example.demo.view
 
 import javafx.scene.text.FontWeight
 import tornadofx.*
+import javax.swing.text.html.ImageView
 import javafx.scene.image.Image
-
+import javafx.scene.text.Font
 
 class AboutView : View("About") {
     override val root = scrollpane {
@@ -13,7 +14,7 @@ class AboutView : View("About") {
         }
 
         borderpane {
-            top = label("Visaulization Bubble Sort"){
+            top = label("Visualization Bubble Sort"){
                 style{
                     paddingLeft = 350
                     paddingTop = 20
@@ -62,13 +63,13 @@ class AboutView : View("About") {
                             style{
                                 paddingRight = 10
                             }
-                            label("\nПсевдокод"){
-                                style{
-                                    fontWeight = FontWeight.LIGHT
-
-                                }
-                            }
-//                            imageview(Image( "resources/bubble.png"))
+//                            label("\nПсевдокод"){
+//                                style{
+//                                    fontWeight = FontWeight.LIGHT
+//
+//                                }
+//                            }
+//                            imageview(Image("bubbleSort.png"))
                         }
 
                     }
@@ -79,7 +80,7 @@ class AboutView : View("About") {
                         paddingTop = 10
                     }
 
-                    top = label("2.Interface"){
+                    top = label("2.Интерфейс"){
                         style{
                             fontWeight = FontWeight.EXTRA_BOLD
                             paddingBottom = 10
@@ -156,6 +157,7 @@ class AboutView : View("About") {
 
                             }
                             */
+
 
                         }
 

@@ -13,6 +13,8 @@ import javax.imageio.ImageIO
 
 class MenuBarController :Controller(){
     val myBar: MyBar by inject()
+    val mainView: MainView by inject()
+//    val mainView: MainView by inject()
 
 
     fun save(){
@@ -21,10 +23,10 @@ class MenuBarController :Controller(){
         fileChooser.extensionFilters.add(extFilter)
         val file = fileChooser.showSaveDialog(primaryStage)
 
-        val x = myBar.root.localToScreen(0.0, 0.0).x
-        val y = myBar.root.localToScreen(0.0, 0.0).y
-        val width  = myBar.root.boundsInParent.width
-        val height  = myBar.root.boundsInParent.height
+        val x = mainView.root.localToScreen(0.0, 0.0).x
+        val y = mainView.root.localToScreen(0.0, 0.0).y
+        val width  = mainView.root.boundsInParent.width
+        val height  = mainView.root.boundsInParent.height
         val image = Robot().createScreenCapture(Rectangle(x.toInt(),y.toInt(),width.toInt(),height.toInt()))
         val convImage = SwingFXUtils.toFXImage(image,null)
 

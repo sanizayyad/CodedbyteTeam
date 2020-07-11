@@ -95,6 +95,7 @@ class MainView : View("Bubble Sort Visualization") {
                             }
                             disableWhen{booleanBinding(processor.sampleList) { isEmpty() }}
                             disableProperty().bind(processor.isSorted)
+
                             setPrefSize(240.0, 40.0)
                         }
 
@@ -119,53 +120,3 @@ class MainView : View("Bubble Sort Visualization") {
         }
     }
 }
-
-
-//class MainView: View() {
-//    val r1 = vbox {
-//        setPrefSize(20.0,20.0)
-//        style{
-//            background = State.ACTIVE.background
-//        }
-//    }
-//    val r2 = vbox {
-//        setPrefSize(20.0,20.0)
-//        style{
-//            background = State.NOTACTIVE.background
-//        }
-//    }
-//    val r3 = vbox {
-//        setPrefSize(20.0,20.0)
-//        style{
-//            background = State.SORTED.background
-//        }
-//    }
-//
-//
-//    override val root = vbox {
-//        button("Animate").action {
-//            sequentialTransition {
-//                timeline {
-//                    keyframe(0.5.seconds) {
-//                        keyvalue(r1.translateXProperty(), 50.0, interpolator = Interpolator.EASE_BOTH)
-//                    }
-//                }
-//                timeline {
-//                    keyframe(0.5.seconds) {
-//                        keyvalue(r2.translateXProperty(), 100.0, interpolator = Interpolator.EASE_BOTH)
-//                    }
-//                }
-//                timeline {
-//                    keyframe(0.5.seconds) {
-//                        keyvalue(r3.translateXProperty(), 150.0, interpolator = Interpolator.EASE_BOTH)
-//                    }
-//                }
-//            }
-//        }
-//        pane {
-//            add(r1)
-//            add(r2)
-//            add(r3)
-//        }
-//    }
-//}

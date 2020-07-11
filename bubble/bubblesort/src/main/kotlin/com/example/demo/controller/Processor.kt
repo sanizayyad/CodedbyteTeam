@@ -19,13 +19,13 @@ class Processor : Controller(){
 
     var codeInfo = SimpleStringProperty("list is empty")
 
-    var isSorted = SimpleBooleanProperty(false)
+    var isSorted = SimpleBooleanProperty(true)
     var isSorting = SimpleBooleanProperty(false)
 
     var sortingSpeed = SimpleIntegerProperty(5)
     var nSamples = SimpleIntegerProperty(5)
     var type:Type? = Type.RANDOM
-    var sampleList = SortedFilteredList<BarItem>(initialList)
+    var sampleList = SortedFilteredList<BarItem>()
 
     private fun digitsDropdown(){
         dropDownItems.clear()
