@@ -1,12 +1,16 @@
 package com.example.demo.view
 
+import com.example.demo.controller.MenuBarController
+import com.example.demo.controller.Processor
 import javafx.geometry.Pos
 import tornadofx.*
 
 class InfoView : View(){
+    val processor: Processor by inject()
 
     val codelist = listOf<String>("do", "\tswapped = false", "for i in 1 until indexOfLastUnsortedElement-1",
             "\t\tif leftElement > rightElement", "\t\t\tswap(leftElement, rightElement)", "\t\t\tswapped = true", "while swapped")
+
 
     override val root = vbox(20.0) {
         vbox {
@@ -19,8 +23,8 @@ class InfoView : View(){
                 borderColor += box(c("#000000"))
             }
 
-            label("Checking if 2 > 5 and swap them if that is true.." +
-                    "\nThe current value of swapped = true"){
+            label{
+                textProperty().bind(processor.codeInfo)
                 style{
                     fontSize = 16.px
                     maxWidth = infinity

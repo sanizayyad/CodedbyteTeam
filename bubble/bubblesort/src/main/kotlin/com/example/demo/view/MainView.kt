@@ -1,20 +1,10 @@
 package com.example.demo.view
 
 import com.example.demo.controller.Processor
-import javafx.embed.swing.SwingFXUtils
 import javafx.geometry.Pos
 import javafx.scene.control.ComboBox
 import javafx.scene.layout.BorderPane
-import javafx.scene.shape.Rectangle
-import javafx.stage.Screen
-import jdk.nashorn.internal.objects.NativeRegExp.source
 import tornadofx.*
-import java.awt.Robot
-import java.awt.Toolkit
-import java.awt.image.BufferedImage
-import java.io.File
-import java.io.IOException
-import javax.imageio.ImageIO
 
 
 class MainView : View("Bubble Sort Visualization") {
@@ -61,7 +51,7 @@ class MainView : View("Bubble Sort Visualization") {
                                 isShowTickMarks = true
                                 majorTickUnit = 5.0
                                 valueProperty().bindBidirectional(processor.sortingSpeed)
-                                disableWhen{booleanBinding(processor.isSorting) { false}}
+                                disableProperty().bind(processor.isSorting)
                                 style {
                                     paddingBottom = 15
                                 }
@@ -71,8 +61,7 @@ class MainView : View("Bubble Sort Visualization") {
                                 isShowTickMarks = true
                                 majorTickUnit = 5.0
                                 valueProperty().bindBidirectional(processor.nSamples)
-                                disableWhen{booleanBinding(processor.isSorting) { false}}
-
+                                disableProperty().bind(processor.isSorting)
                             }
                             hbox(25) {
                                 style {
@@ -80,7 +69,7 @@ class MainView : View("Bubble Sort Visualization") {
                                 }
                                 dropdown.items = processor.inputMethods
                                 dropdown.selectionModel.selectFirst()
-                                dropdown.disableWhen{booleanBinding(processor.isSorting) { false}}
+                                disableProperty().bind(processor.isSorting)
                                 dropdown.valueProperty().addListener { observable, oldValue, newValue
                                     -> processor.type = processor.changeType(newValue)}
                                 borderpane {
@@ -105,6 +94,7 @@ class MainView : View("Bubble Sort Visualization") {
                                 processor.sort()
                             }
                             disableWhen{booleanBinding(processor.sampleList) { isEmpty() }}
+                            disableProperty().bind(processor.isSorted)
                             setPrefSize(240.0, 40.0)
                         }
 
@@ -131,3 +121,51 @@ class MainView : View("Bubble Sort Visualization") {
 }
 
 
+//class MainView: View() {
+//    val r1 = vbox {
+//        setPrefSize(20.0,20.0)
+//        style{
+//            background = State.ACTIVE.background
+//        }
+//    }
+//    val r2 = vbox {
+//        setPrefSize(20.0,20.0)
+//        style{
+//            background = State.NOTACTIVE.background
+//        }
+//    }
+//    val r3 = vbox {
+//        setPrefSize(20.0,20.0)
+//        style{
+//            background = State.SORTED.background
+//        }
+//    }
+//
+//
+//    override val root = vbox {
+//        button("Animate").action {
+//            sequentialTransition {
+//                timeline {
+//                    keyframe(0.5.seconds) {
+//                        keyvalue(r1.translateXProperty(), 50.0, interpolator = Interpolator.EASE_BOTH)
+//                    }
+//                }
+//                timeline {
+//                    keyframe(0.5.seconds) {
+//                        keyvalue(r2.translateXProperty(), 100.0, interpolator = Interpolator.EASE_BOTH)
+//                    }
+//                }
+//                timeline {
+//                    keyframe(0.5.seconds) {
+//                        keyvalue(r3.translateXProperty(), 150.0, interpolator = Interpolator.EASE_BOTH)
+//                    }
+//                }
+//            }
+//        }
+//        pane {
+//            add(r1)
+//            add(r2)
+//            add(r3)
+//        }
+//    }
+//}
