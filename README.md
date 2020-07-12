@@ -12,7 +12,7 @@
     
     ![Alt text](bubble/bubblesort/src/main/kotlin/resources/app.png?raw=true "Preview")
     
-    ![Alt text](bubble/bubblesort/src/main/kotlin/resources/appgif.gifg?raw=true "Gif")
+    ![Alt text](bubble/bubblesort/src/main/kotlin/resources/appgif.gif?raw=true "Gif")
     
     
 
