@@ -46,10 +46,3 @@ class BarItemModel(property: ObjectProperty<BarItem>) : ItemViewModel<BarItem>(i
     var value = bind(autocommit = true) { item?.valueProperty }
     var background = bind(autocommit = true) { item?.backgroundProperty }
 }
-var initialList = FXCollections.observableArrayList<BarItem>(
-        BarItem(1),
-        BarItem(4),
-        BarItem(3),
-        BarItem(5),
-        BarItem(2)
-)

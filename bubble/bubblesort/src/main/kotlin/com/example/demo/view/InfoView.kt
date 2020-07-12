@@ -2,14 +2,13 @@ package com.example.demo.view
 
 import com.example.demo.controller.MenuBarController
 import com.example.demo.controller.Processor
+import com.example.demo.model.codeList
 import javafx.geometry.Pos
+import javafx.scene.text.FontWeight
 import tornadofx.*
 
 class InfoView : View(){
     val processor: Processor by inject()
-
-    val codelist = listOf<String>("do", "\tswapped = false", "for i in 1 until indexOfLastUnsortedElement-1",
-            "\t\tif leftElement > rightElement", "\t\t\tswap(leftElement, rightElement)", "\t\t\tswapped = true", "while swapped")
 
 
     override val root = vbox(20.0) {
@@ -26,7 +25,7 @@ class InfoView : View(){
             label{
                 textProperty().bind(processor.codeInfo)
                 style{
-                    fontSize = 16.px
+                    fontSize = 18.px
                     maxWidth = infinity
                     textFill = c("#000000")
                 }
@@ -40,15 +39,23 @@ class InfoView : View(){
                 backgroundColor += c("#FFFFFF")
                 borderColor += box(c("#000000"))
             }
-            for (i in codelist.indices){
-                label("${codelist[i]}"){
+            listview (codeList){
+                style{
+                    alignment = Pos.CENTER
+                }
+                cellFormat{
+                    prefHeight = 55.0
                     style{
-                        fontSize = 16.px
-                        maxWidth = infinity
-                        padding = box(5.px)
-                        if(i == 3){
-                            backgroundColor += c("#000000")
-                            textFill = c("#FFFFFF")
+                        backgroundColor += c("#FFFFFF")
+                        alignment = Pos.CENTER
+                    }
+                    graphic =label(item.value){
+                        style{
+                            fontSize = 18.px
+                            maxWidth = infinity
+                            padding = box(5.px)
+                            backgroundProperty().bindBidirectional(item.bgProperty)
+                            textFillProperty().bindBidirectional(item.codeFillProperty)
                         }
                     }
                 }

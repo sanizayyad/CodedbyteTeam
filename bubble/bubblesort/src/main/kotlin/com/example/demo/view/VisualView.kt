@@ -20,7 +20,7 @@ class VisualView : View(){
                 }
             }
             vbox (20.0){
-                setMaxSize(350.0, Double.MAX_VALUE)
+                setMaxSize(400.0, Double.MAX_VALUE)
                 label("Code") {
                     addClass(Styles.viewHeaders)
                 }

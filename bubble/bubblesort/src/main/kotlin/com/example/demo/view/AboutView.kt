@@ -69,7 +69,7 @@ class AboutView : View("About") {
 //
 //                                }
 //                            }
-//                            imageview(Image("bubbleSort.png"))
+//                            imageview(Image("src/main/kotlin/resources/bubbleSort.png"))
                         }
 
                     }

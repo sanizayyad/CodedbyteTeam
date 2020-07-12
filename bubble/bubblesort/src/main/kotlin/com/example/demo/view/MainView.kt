@@ -1,5 +1,6 @@
 package com.example.demo.view
 
+import com.example.demo.controller.InputController
 import com.example.demo.controller.Processor
 import javafx.geometry.Pos
 import javafx.scene.control.ComboBox
@@ -9,6 +10,7 @@ import tornadofx.*
 
 class MainView : View("Bubble Sort Visualization") {
     val processor: Processor by inject()
+    val inputController: InputController by inject()
     override val root = BorderPane()
     init {
         val dropdown = ComboBox<String>()
@@ -46,20 +48,20 @@ class MainView : View("Bubble Sort Visualization") {
                             style{
                                 paddingBottom = 10.0
                             }
-                            slider(0.0, 10.0) {
+                            slider(1.0, 10.0) {
                                 isShowTickLabels = true
                                 isShowTickMarks = true
-                                majorTickUnit = 5.0
+                                majorTickUnit = 3.0
                                 valueProperty().bindBidirectional(processor.sortingSpeed)
                                 disableProperty().bind(processor.isSorting)
                                 style {
                                     paddingBottom = 15
                                 }
                             }
-                            slider(0.0, 10.0) {
+                            slider(1.0, 10.0) {
                                 isShowTickLabels = true
                                 isShowTickMarks = true
-                                majorTickUnit = 5.0
+                                majorTickUnit = 3.0
                                 valueProperty().bindBidirectional(processor.nSamples)
                                 disableProperty().bind(processor.isSorting)
                             }
@@ -67,17 +69,17 @@ class MainView : View("Bubble Sort Visualization") {
                                 style {
                                     paddingTop = 8
                                 }
-                                dropdown.items = processor.inputMethods
+                                dropdown.items = inputController.inputMethods
                                 dropdown.selectionModel.selectFirst()
                                 disableProperty().bind(processor.isSorting)
                                 dropdown.valueProperty().addListener { observable, oldValue, newValue
-                                    -> processor.type = processor.changeType(newValue)}
+                                    -> inputController.type = inputController.changeType(newValue)}
                                 borderpane {
                                     center = dropdown
                                 }
                                 button("Enter Inputs") {
                                     action {
-                                        processor.getInput()
+                                        inputController.getInput()
                                     }
                                 }
                             }
@@ -86,24 +88,36 @@ class MainView : View("Bubble Sort Visualization") {
                     center = vbox {
                         spacing = 5.0
                         alignment = Pos.CENTER_RIGHT
+                        disableWhen{booleanBinding(processor.sampleList) { isEmpty() }}
                         style{
                             paddingRight = 60.0
                         }
-                        button("Sort") {
+                        button("Step Sort") {
                             action {
-                                processor.sort()
+                                processor.stepSort()
                             }
-                            disableWhen{booleanBinding(processor.sampleList) { isEmpty() }}
                             disableProperty().bind(processor.isSorted)
-
                             setPrefSize(240.0, 40.0)
+                        }
+                        vbox {
+                            style{
+                                alignment = Pos.CENTER_RIGHT
+                            }
+                            disableProperty().bind(processor.isSorting)
+                            button("Sort") {
+                                action {
+                                    processor.sort()
+                                }
+                                disableProperty().bind(processor.isSorted)
+                                setPrefSize(240.0, 40.0)
+                            }
                         }
 
                         button("Shuffle") {
                             action {
                                processor.shuffle()
                             }
-                            disableWhen{booleanBinding(processor.sampleList) { isEmpty() }}
+                            disableProperty().bind(processor.isSorting)
                             setPrefSize(240.0, 40.0)
                         }
                         button("Reset") {
@@ -113,6 +127,7 @@ class MainView : View("Bubble Sort Visualization") {
                             }
                             setPrefSize(240.0, 40.0)
                         }
+
                     }
                 }
 
