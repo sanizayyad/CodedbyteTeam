@@ -8,6 +8,9 @@
   - [Правила работы и принятые соглашения](#правила-работы-и-принятые-соглашения)
     - [Код](#код)
     - [UML](#uml)
+    
+    
+    ![Alt text](bubble/bubblesort/src/main/kotlin/resources/app.png?raw=true "Preview")
 
 ## Организация
 
