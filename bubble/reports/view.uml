@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.example.demo.view</OriginalElement>
+  <nodes>
+    <node x="0.0" y="652.0">com.example.demo.view.VisualView</node>
+    <node x="338.0" y="464.0">com.example.demo.view.AboutView</node>
+    <node x="0.0" y="276.0">com.example.demo.view.MenuBarView</node>
+    <node x="395.0" y="276.0">com.example.demo.view.InfoView</node>
+    <node x="531.0" y="464.0">com.example.demo.view.AuthorsView</node>
+    <node x="338.0" y="0.0">com.example.demo.view.MainView</node>
+    <node x="0.0" y="464.0">com.example.demo.view.MyBar</node>
+    <node x="0.0" y="0.0">com.example.demo.view.InputDialog</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="184.5" y="493.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

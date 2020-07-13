@@ -36,6 +36,11 @@
             <artifactId>maven-repository-metadata</artifactId>
             <version>3.0.5</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.2</version>
+        </dependency>
     </dependencies>
 
     <build>
