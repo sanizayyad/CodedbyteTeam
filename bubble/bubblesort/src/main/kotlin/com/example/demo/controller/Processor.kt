@@ -17,8 +17,8 @@ class Processor : Controller(){
     var codeInfo = SimpleStringProperty("List is empty")
     var isSorted = SimpleBooleanProperty(true)
     var isSorting = SimpleBooleanProperty(false)
-    var sortingSpeed = SimpleIntegerProperty(10)
-    var nSamples = SimpleIntegerProperty(5)
+    var sortingSpeed = SimpleIntegerProperty(5)
+    var nSamples = SimpleIntegerProperty(7)
     var sampleList = SortedFilteredList<BarItem>()
     private var timeline:Timeline = Timeline()
 
@@ -29,8 +29,8 @@ class Processor : Controller(){
         j = 0
         isSorting.value = false
         isSorted.value = false
-        sortingSpeed.value = 10
-        nSamples.value = 5
+        sortingSpeed.value = 5
+        nSamples.value = 7
         codeState(-1)
         codeInfo.value = "list is empty"
         sampleList.clear()
@@ -44,13 +44,13 @@ class Processor : Controller(){
         timeline.stop()
         i = 0
         j = 0
-       if(!checkSorted()){
-           isSorted.value = false
-           codeInfo.value = "list is unsorted"
-           sampleList.forEach {
-               it.background = State.NOTACTIVE.background
-           }
-       }
+        if(!checkSorted()){
+            isSorted.value = false
+            codeInfo.value = "list is unsorted"
+            sampleList.forEach {
+                it.background = State.NOTACTIVE.background
+            }
+        }
     }
 
     private  fun codeState(index:Int){
@@ -85,11 +85,11 @@ class Processor : Controller(){
         }
 
     }
+
     var i = 0
     var j = 0
-
     fun stepSort() {
-        val speed = (sortingSpeed.value.toDouble()+3)/100
+        val speed = sortingSpeed.value.toDouble()/100
         isSorting.value = true
         if (i < sampleList.size) {
             codeState(0)
@@ -127,17 +127,14 @@ class Processor : Controller(){
 
     }
     fun sort(){
-        val speed = ((sortingSpeed.value.toDouble()+3)/100) * sampleList.size
-        if (!isSorting.value){
-            timeline = Timeline(
-                    KeyFrame(seconds(speed), EventHandler {
-                        stepSort()
-                    }))
-            val comparisons = ((sampleList.size + 1) * sampleList.size)/2
-            timeline.cycleCount = comparisons + 1
-            timeline.play()
-        }
-
+        val speed = (sortingSpeed.value.toDouble()/100) * sampleList.size
+        timeline = Timeline(
+                KeyFrame(seconds(speed), EventHandler {
+                    stepSort()
+                }))
+        val comparisons = ((sampleList.size + 1) * sampleList.size)/2
+        timeline.cycleCount = comparisons + 1
+        timeline.play()
     }
 
     fun reassignList(newList: SortedFilteredList<BarItem>){

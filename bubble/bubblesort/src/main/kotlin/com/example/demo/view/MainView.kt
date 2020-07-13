@@ -5,6 +5,7 @@ import com.example.demo.controller.Processor
 import javafx.geometry.Pos
 import javafx.scene.control.ComboBox
 import javafx.scene.layout.BorderPane
+import javafx.scene.transform.Rotate
 import tornadofx.*
 
 
@@ -26,7 +27,7 @@ class MainView : View("Bubble Sort Visualization") {
                     }
                     left = hbox(10.0) {
                         vbox (30){
-                            label("Sorting Speed: ") {
+                            label("Sorting Speed: fast") {
                                 style {
                                     fontSize = 16.px
                                 }
@@ -51,14 +52,15 @@ class MainView : View("Bubble Sort Visualization") {
                             slider(1.0, 10.0) {
                                 isShowTickLabels = true
                                 isShowTickMarks = true
-                                majorTickUnit = 3.0
+                                majorTickUnit = 2.0
                                 valueProperty().bindBidirectional(processor.sortingSpeed)
                                 disableProperty().bind(processor.isSorting)
                                 style {
                                     paddingBottom = 15
+
                                 }
                             }
-                            slider(1.0, 10.0) {
+                            slider(1.0, 15.0) {
                                 isShowTickLabels = true
                                 isShowTickMarks = true
                                 majorTickUnit = 3.0
