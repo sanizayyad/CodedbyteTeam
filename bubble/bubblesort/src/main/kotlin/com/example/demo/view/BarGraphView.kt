@@ -35,8 +35,8 @@ class MyBar : View(){
                         alignment = Pos.BOTTOM_CENTER
                         backgroundProperty().bindBidirectional((item.backgroundProperty))
                     }
-                    label ("${item.value}"){
-                        style{
+                    label("${item.value}") {
+                        style {
                             textFill = c("#FFFFFF")
                             fontSize = 20.px
                             fontWeight = FontWeight.EXTRA_BOLD
