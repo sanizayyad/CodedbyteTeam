@@ -94,12 +94,19 @@ class MainView : View("Bubble Sort Visualization") {
                         style{
                             paddingRight = 60.0
                         }
-                        button("Step Sort") {
-                            action {
-                                processor.stepSort()
+
+                        vbox {
+                            style{
+                                alignment = Pos.CENTER_RIGHT
                             }
-                            disableProperty().bind(processor.isSorted)
-                            setPrefSize(240.0, 40.0)
+                            disableProperty().bind(processor.disableStep)
+                            button("Step Sort") {
+                                action {
+                                    processor.stepSort()
+                                }
+                                disableProperty().bind(processor.isSorted)
+                                setPrefSize(240.0, 40.0)
+                            }
                         }
                         vbox {
                             style{

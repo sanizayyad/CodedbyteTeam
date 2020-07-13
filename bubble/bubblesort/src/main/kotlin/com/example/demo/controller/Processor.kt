@@ -17,6 +17,7 @@ class Processor : Controller(){
     var codeInfo = SimpleStringProperty("List is empty")
     var isSorted = SimpleBooleanProperty(true)
     var isSorting = SimpleBooleanProperty(false)
+    var disableStep = SimpleBooleanProperty(false)
     var sortingSpeed = SimpleIntegerProperty(5)
     var nSamples = SimpleIntegerProperty(7)
     var sampleList = SortedFilteredList<BarItem>()
@@ -34,6 +35,7 @@ class Processor : Controller(){
         codeState(-1)
         codeInfo.value = "list is empty"
         sampleList.clear()
+        disableStep.value = false
     }
     fun shuffle(){
         val rgen = Random()
@@ -51,6 +53,7 @@ class Processor : Controller(){
                 it.background = State.NOTACTIVE.background
             }
         }
+        disableStep.value = false
     }
 
     private  fun codeState(index:Int){
@@ -122,11 +125,13 @@ class Processor : Controller(){
             isSorted.value = true
             codeInfo.value = "List is sorted"
             codeState(-1)
+            disableStep.value = false
             println("finished")
         }
 
     }
     fun sort(){
+        disableStep.value = true
         val speed = (sortingSpeed.value.toDouble()/100) * sampleList.size
         timeline = Timeline(
                 KeyFrame(seconds(speed), EventHandler {
