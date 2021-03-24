@@ -10,9 +10,9 @@
     - [UML](#uml)
     
     
-    ![Alt text](bubble/bubblesort/src/main/kotlin/resources/app.png?raw=true "Preview")
+    ![](https://github.com/sanizayyad/CodedbyteTeam/bubble/bubblesort/src/main/kotlin/resources/app.png?raw=true "Preview")
     
-    ![Alt text](bubble/bubblesort/src/main/kotlin/resources/appgif.gif?raw=true "Gif")
+    ![](https://github.com/sanizayyad/CodedbyteTeam/bubble/bubblesort/src/main/kotlin/resources/appgif.gif?raw=true "Gif")
     
     
 
